@@ -9,4 +9,5 @@
 /captures
 /app/app-release.apk
 /app/build/
+/library/build/
 *.aar
