@@ -84,7 +84,9 @@ class AppRate(private val hostActivity: Activity) : android.content.DialogInterf
 
         Log.d(TAG, "Init AppRate")
 
-        if (preferences.getBoolean(PrefsContract.PREF_DONT_SHOW_AGAIN, false) || preferences.getBoolean(PrefsContract.PREF_APP_HAS_CRASHED, false) && !showIfHasCrashed) {
+        if (preferences.getBoolean(PrefsContract.PREF_DONT_SHOW_AGAIN, false) ||
+                preferences.getBoolean(PrefsContract.PREF_APP_HAS_CRASHED, false) &&
+                !showIfHasCrashed) {
             return
         }
 
