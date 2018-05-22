@@ -207,7 +207,7 @@ class AppRate(private val hostActivity: Activity) : android.content.DialogInterf
             DialogInterface.BUTTON_POSITIVE -> {
                 try {
                     hostActivity.startActivity(Intent(Intent.ACTION_VIEW,
-                            Uri.parse("https://play.google.com/store/?id=" + hostActivity.packageName)))
+                            Uri.parse("https://play.google.com/store/apps/details?id=" + hostActivity.packageName)))
                 } catch (e: ActivityNotFoundException) {
                     Toast.makeText(hostActivity, "No Play Store installed on device", Toast.LENGTH_SHORT).show()
                 }
