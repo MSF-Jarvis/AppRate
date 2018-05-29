@@ -14,7 +14,7 @@ import android.widget.Toast
 import com.afollestad.materialdialogs.DialogAction
 import com.afollestad.materialdialogs.MaterialDialog
 
-class AppRate(private val hostActivity: Activity) : android.content.DialogInterface.OnClickListener, OnCancelListener {
+class AppRate(private val hostActivity: Activity) : DialogInterface.OnClickListener, OnCancelListener {
     private var clickListener: OnClickListener? = null
     private val preferences: SharedPreferences =
             hostActivity.getSharedPreferences(PrefsContract.SHARED_PREFS_NAME, 0)
@@ -146,8 +146,9 @@ class AppRate(private val hostActivity: Activity) : android.content.DialogInterf
 
         Log.d(TAG, "Create default dialog.")
 
-        val title = "Rate " + getApplicationName(hostActivity.applicationContext)
-        val message = "If you enjoy using " + getApplicationName(hostActivity.applicationContext) + ", please take a moment to rate it. Thanks for your support!"
+        val title = String.format("Rate %s", getApplicationName(hostActivity.applicationContext))
+        val message = String.format("If you enjoy using %s, please take a moment to rate it. Thanks for your support!",
+                getApplicationName(hostActivity.applicationContext))
         val rate = "Rate it !"
         val remindLater = "Remind me later"
         val dismiss = "No thanks"
@@ -210,7 +211,7 @@ class AppRate(private val hostActivity: Activity) : android.content.DialogInterf
                 try {
                     hostActivity.startActivity(Intent(Intent.ACTION_VIEW,
                             Uri.parse("https://play.google.com/store/apps/details?id=" + hostActivity.packageName)))
-                } catch (e: ActivityNotFoundException) {
+                } catch (ignored: ActivityNotFoundException) {
                     Toast.makeText(hostActivity, "No Play Store installed on device", Toast.LENGTH_SHORT).show()
                 }
 
@@ -238,7 +239,7 @@ class AppRate(private val hostActivity: Activity) : android.content.DialogInterf
 
     companion object {
 
-        private val TAG = "AppRate"
+        private const val TAG = "AppRate"
 
         /**
          * Reset all the data collected about number of launches and days until first launch.
@@ -256,11 +257,11 @@ class AppRate(private val hostActivity: Activity) : android.content.DialogInterf
          */
         private fun getApplicationName(context: Context): String {
             val packageManager = context.packageManager
-            var applicationInfo: ApplicationInfo?
-            try {
-                applicationInfo = packageManager.getApplicationInfo(context.packageName, 0)
-            } catch (e: NameNotFoundException) {
-                applicationInfo = null
+            val applicationInfo: ApplicationInfo?
+            applicationInfo = try {
+                packageManager.getApplicationInfo(context.packageName, 0)
+            } catch (ignored: NameNotFoundException) {
+                null
             }
 
             return (if (applicationInfo != null)
