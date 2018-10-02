@@ -2,10 +2,9 @@ package com.apprate.example
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
-import kotlinx.android.synthetic.main.activity_main.*
 import me.msfjarvis.apprate.AppRate
 
 class MainActivity : AppCompatActivity() {
