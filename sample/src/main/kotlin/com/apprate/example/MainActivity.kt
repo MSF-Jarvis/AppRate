@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
 import com.afollestad.materialdialogs.MaterialDialog
+import kotlinx.android.synthetic.main.activity_main.*
 import me.msfjarvis.apprate.AppRate
 
 class MainActivity : AppCompatActivity() {
