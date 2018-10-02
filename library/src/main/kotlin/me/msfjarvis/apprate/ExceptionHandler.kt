@@ -5,7 +5,7 @@ import java.lang.Thread.UncaughtExceptionHandler
 import android.content.Context
 import android.content.SharedPreferences
 
-class ExceptionHandler// Constructor.
+class ExceptionHandler
 internal constructor(private val defaultExceptionHandler: UncaughtExceptionHandler, context: Context) : UncaughtExceptionHandler {
     private val preferences: SharedPreferences =
             context.getSharedPreferences(PrefsContract.SHARED_PREFS_NAME, 0)
