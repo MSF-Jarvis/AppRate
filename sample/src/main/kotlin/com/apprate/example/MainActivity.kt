@@ -1,9 +1,8 @@
 package com.apprate.example
 
-import android.content.DialogInterface
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.afollestad.materialdialogs.MaterialDialog
 import kotlinx.android.synthetic.main.activity_main.*
 import me.msfjarvis.apprate.AppRate
@@ -24,22 +23,21 @@ class MainActivity : AppCompatActivity() {
                 .init()
 
         // Custom dialog example
-        val customDialogBuilder = MaterialDialog.Builder(this)
+        val customDialog = MaterialDialog(this)
                 .title(R.string.custom_title)
-                .content(R.string.custom_content)
-                .positiveText(R.string.custom_positive_text)
-                .neutralText(R.string.custom_neutral_text)
-                .negativeText(R.string.custom_negative_text)
+                .message(R.string.custom_content)
+                .positiveButton(R.string.custom_positive_text)
+                .negativeButton(R.string.custom_negative_text)
 
         button_custom_dialog.setOnClickListener {
-            AppRate(this).setCustomDialog(customDialogBuilder).init()
+            AppRate(this).setCustomDialog(customDialog).init()
         }
 
         // Custom click lister example
         button_custom_click_listener.setOnClickListener {
-            AppRate(this).setOnClickListener(DialogInterface.OnClickListener { _, _ ->
+            AppRate(this).setOnPositiveCallback {
                 Toast.makeText(this, "Custom on click action here!", Toast.LENGTH_SHORT).show()
-            }).init()
+            }.init()
         }
 
     }
