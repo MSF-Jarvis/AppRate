@@ -57,6 +57,7 @@ class AppRate(private val hostActivity: Activity) : DialogInterface.OnClickListe
      */
     fun setShowIfAppHasCrashed(showIfCrash: Boolean): AppRate {
         showIfHasCrashed = showIfCrash
+        preferences.edit().putBoolean(PrefsContract.PREF_DONT_SHOW_IF_CRASHED, showIfCrash).apply()
         return this
     }
 
