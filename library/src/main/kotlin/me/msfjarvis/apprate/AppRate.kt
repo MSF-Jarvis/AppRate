@@ -22,8 +22,8 @@ class AppRate(private val hostActivity: Activity) {
     private var minLaunchesUntilPrompt: Long = 0
     private var minDaysUntilPrompt: Long = 0
     private var customDialog: MaterialDialog? = null
-    private var positiveActionCallback: () -> Unit? = {}
-    private var negativeActionCallback: () -> Unit? = {}
+    private var positiveActionCallback: () -> Unit = { throw NoCustomCallbackException() }
+    private var negativeActionCallback: () -> Unit? = { throw NoCustomCallbackException() }
 
     private var showIfHasCrashed = true
 
@@ -165,15 +165,19 @@ class AppRate(private val hostActivity: Activity) {
      * is invoked.
      */
     private fun onPositive() {
-        positiveActionCallback() ?: try {
-            hostActivity.startActivity(
-                Intent(
-                    Intent.ACTION_VIEW,
-                    Uri.parse("https://play.google.com/store/apps/details?id=" + hostActivity.packageName)
+        try {
+            positiveActionCallback()
+        } catch (ignored: NoCustomCallbackException) {
+            try {
+                hostActivity.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW,
+                        Uri.parse("https://play.google.com/store/apps/details?id=" + hostActivity.packageName)
+                    )
                 )
-            )
-        } catch (ignored: ActivityNotFoundException) {
-            Toast.makeText(hostActivity, "No Play Store installed on device", Toast.LENGTH_SHORT).show()
+            } catch (ignored: ActivityNotFoundException) {
+                Toast.makeText(hostActivity, "No Play Store installed on device", Toast.LENGTH_SHORT).show()
+            }
         }
 
         preferences.edit().putBoolean(PrefsContract.PREF_DONT_SHOW_AGAIN, true).apply()
@@ -184,7 +188,11 @@ class AppRate(private val hostActivity: Activity) {
      * is invoked.
      */
     private fun onNegative() {
-        negativeActionCallback() ?: preferences.edit().putBoolean(PrefsContract.PREF_DONT_SHOW_AGAIN, true).apply()
+        try {
+            negativeActionCallback()
+        } catch (ignored: NoCustomCallbackException) {
+            preferences.edit().putBoolean(PrefsContract.PREF_DONT_SHOW_AGAIN, true).apply()
+        }
     }
 
     private fun onCancel() {
@@ -215,6 +223,8 @@ class AppRate(private val hostActivity: Activity) {
         this.positiveActionCallback = positiveActionCallback
         return this
     }
+
+    class NoCustomCallbackException: Exception()
 
     companion object {
 
