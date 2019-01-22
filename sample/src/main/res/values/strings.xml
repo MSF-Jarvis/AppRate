@@ -1,0 +1,8 @@
+<resources>
+  <string name="app_name">AppRate Example App</string>
+  <string name="custom_title">Are you enjoying AppRate?</string>
+  <string name="custom_content">Please rate it on Google Play - it really helps!</string>
+  <string name="custom_positive_text">Heck yeah!</string>
+  <string name="custom_neutral_text">Not now</string>
+  <string name="custom_negative_text">Uhm…no</string>
+</resources>
