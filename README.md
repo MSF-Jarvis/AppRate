@@ -1,4 +1,7 @@
-AppRate	[![Travis-CI Badge](https://travis-ci.org/MSF-Jarvis/AppRate.svg?branch=develop)](https://travis-ci.org/MSF-Jarvis/AppRate) [![](https://jitpack.io/v/MSF-Jarvis/AppRate.svg)](https://jitpack.io/#MSF-Jarvis/AppRate)
+AppRate
+[![GitHub workflow](https://github.com/msfjarvis/AppRate/workflows/CI%20builds/badge.svg)](https://github.com/msfjarvis/AppRate/actions)
+[![](https://jitpack.io/v/msfjarvis/AppRate.svg)](https://jitpack.io/#msfjarvis/AppRate)
+
 =======
 
 * AppRate allows your users to rate your application.
@@ -27,7 +30,7 @@ add the dependency
 
 ```
 dependencies {
-		compile 'com.github.MSF-Jarvis:AppRate:1.3'
+		implementation 'com.github.msfjarvis:AppRate:1.3'
 	}
 ```
 
