@@ -22,7 +22,7 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
     dependencies {
-        api 'com.afollestad.material-dialogs:core:2.0.0-rc7'
+        api 'com.afollestad.material-dialogs:core:3.1.1'
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     }
 }
