@@ -1,8 +1,7 @@
-AppRate
-[![GitHub workflow](https://github.com/msfjarvis/AppRate/workflows/CI%20builds/badge.svg)](https://github.com/msfjarvis/AppRate/actions)
-[![](https://jitpack.io/v/msfjarvis/AppRate.svg)](https://jitpack.io/#msfjarvis/AppRate)
+# AppRate
 
-=======
+[![GitHub workflow](https://github.com/msfjarvis/AppRate/workflows/CI%20builds/badge.svg)](https://github.com/msfjarvis/AppRate/actions)
+[![Jitpack](https://jitpack.io/v/msfjarvis/AppRate.svg)](https://jitpack.io/#msfjarvis/AppRate)
 
 * AppRate allows your users to rate your application.
 
@@ -12,84 +11,80 @@ AppRate
 
 * Also featured on the [CodePath](https://github.com/codepath/android_guides/wiki/Implementing-a-Rate-Me-Feature) Android Guides
 
+## How to install and use
 
-How to install and use
-----------------------
+* Put this in your root `build.gradle` file
 
-1. Put this in your root build.gradle file 
-```
+```gradle
 allprojects {
-		repositories {
-			...
-			maven { url "https://jitpack.io" }
-		}
-	}
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
+}
 ```
 
 add the dependency
 
-```
+```gradle
 dependencies {
-		implementation 'com.github.msfjarvis:AppRate:1.3'
-	}
+    implementation 'com.github.msfjarvis:AppRate:1.3'
+}
 ```
 
-2. Use AppRate as follows in your `MAIN` activity: 
+* Use AppRate as follows in your `MAIN` activity:
 
 ```java
 new AppRate(this).init();
 ```
 
-Features
---------
+## Features
 
 * You can decide **not to prompt the user** if the application **has crashed once**.
 
 ```java
 new AppRate(this)
-	.setShowIfAppHasCrashed(false)
-	.init();
+    .setShowIfAppHasCrashed(false)
+    .init();
 ```
 
 * You can decide **when to prompt the user**.
 
 ```java
 new AppRate(this)
-	.setMinDaysUntilPrompt(7)
-	.setMinLaunchesUntilPrompt(20)
-	.init();
+    .setMinDaysUntilPrompt(7)
+    .setMinLaunchesUntilPrompt(20)
+    .init();
 ```
 
 * You can **customize** all the messages and buttons of **the rate dialog**.
 
 ```java
 AlertDialogWrapper.Builder builder = new AlertDialogWrapper.Builder(this)
-	.setCustomTitle(myCustomTitleView)
-	.setIcon(R.drawable.my_custom_icon)
-	.setMessage("My custom message")
-	.setPositiveButton("My custom positive button", null)
-	.setNegativeButton("My custom negative button", null)
-	.setNeutralButton("My custom neutral button", null);
+    .setCustomTitle(myCustomTitleView)
+    .setIcon(R.drawable.my_custom_icon)
+    .setMessage("My custom message")
+    .setPositiveButton("My custom positive button", null)
+    .setNegativeButton("My custom negative button", null)
+    .setNeutralButton("My custom neutral button", null);
 
 new AppRate(this)
-	.setCustomDialog(builder)
-	.init();
+    .setCustomDialog(builder)
+    .init();
 ```
 
 * You can set **your own click listener**.
 
 ```java
 new AppRate(this)
-	.setOnClickListener(new DialogInterface.OnClickListener() {
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
-			// Do something.
-		}
-	})
-	.init();
+    .setOnClickListener(new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // Do something.
+        }
+    })
+    .init();
 ```
 
-License
--------
+## License
 
 This content is released under the MIT License.
