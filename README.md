@@ -1,7 +1,8 @@
 # AppRate
 
 [![GitHub workflow](https://github.com/msfjarvis/AppRate/workflows/CI%20builds/badge.svg)](https://github.com/msfjarvis/AppRate/actions)
-[![Jitpack](https://jitpack.io/v/msfjarvis/AppRate.svg)](https://jitpack.io/#msfjarvis/AppRate)
+[![](https://jitpack.io/v/msfjarvis/AppRate.svg)](https://jitpack.io/#msfjarvis/AppRate)
+
 
 * AppRate allows your users to rate your application.
 
