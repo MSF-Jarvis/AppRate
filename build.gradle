@@ -7,7 +7,7 @@ allprojects {
 }
 
 buildscript {
-    ext.kotlin_version = '1.4.0'
+    ext.kotlin_version = '1.4.10'
     dependencies {
         classpath 'com.android.tools.build:gradle:4.0.1'
         classpath "com.github.ben-manes:gradle-versions-plugin:0.25.0"
